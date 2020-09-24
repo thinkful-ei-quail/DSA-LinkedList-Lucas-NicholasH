@@ -28,6 +28,20 @@ class LinkedList {
     }
   }
 
+  insertWithLoop(item) {
+    if (this.head === null || this.head.next === null) {
+      console.log("List not long enough for loop");
+      return;
+    } else {
+      let loopNode = this.head.next;
+      let currentNode = this.head;
+      while (currentNode.next !== null) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = new _Node(item, loopNode);
+    }
+  }
+
   insertBefore(item, key) {
     if (this.head === null) {
       this.insertFirst(item);
@@ -263,3 +277,17 @@ const findThirdFromEnd = function (lst) {
 
 console.log(findThirdFromEnd(names));
 console.log(findThirdFromEnd(emptyList));
+
+const generateCycleList = function () {
+  const CycleList = new LinkedList();
+  CycleList.insertFirst("Mary");
+  CycleList.insertFirst("Larry");
+  CycleList.insertFirst("Jerry");
+  CycleList.insertFirst("Steve");
+  CycleList.insertWithLoop("John");
+  return CycleList;
+};
+
+console.log(generateCycleList());
+
+const isCycleList = function (list) {};
