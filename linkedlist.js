@@ -134,9 +134,9 @@ const main = function () {
   SLL.insertFirst("Apollo");
   SLL.insertLast("Helo");
   SLL.insertLast("Starbuck");
-  // SLL.insertLast("Husker");
-  // SLL.insertLast("Boomer");
-  // SLL.insertAt("Kat", 2);
+  SLL.insertLast("Husker");
+  SLL.insertLast("Boomer");
+  SLL.insertAt("Kat", 2);
   // SLL.remove("Boomer");
   //console.log(SLL.toString());
   return SLL;
@@ -263,3 +263,18 @@ const findThirdFromEnd = function (lst) {
 
 console.log(findThirdFromEnd(names));
 console.log(findThirdFromEnd(emptyList));
+
+
+const findMiddle = function (lst) {
+  if (lst.head === null || lst.head.next === null) {
+    return lst.head;
+  }
+  let lstSize = size(lst);
+  let currentNode = lst.head;
+  for (let i = 0; i < Math.ceil(lstSize / 2) - 1; i++) {
+    currentNode = currentNode.next;
+  }
+  return currentNode.value;
+};
+
+// console.log(findMiddle(names));
