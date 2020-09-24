@@ -1,3 +1,5 @@
+'use strict';
+
 class _Node {
   constructor(value, next) {
     this.value = value;
@@ -26,6 +28,58 @@ class LinkedList {
     }
   }
 
+  insertBefore(item, key) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    } else {
+      let currentNode = this.head;
+      let previousNode = this.head;
+      while (currentNode.value !== key && currentNode !== null) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      if (currentNode === null) {
+        console.log('Key not found');
+      }
+      let newNode = new _Node(item, currentNode);
+      previousNode.next = newNode;
+    }
+  }
+
+  insertAfter(item, key) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    } else {
+      let currentNode = this.head;
+      while (currentNode.value !== key && currentNode !== null) {
+        currentNode = currentNode.next;
+      }
+      if (currentNode === null) {
+        console.log('Key not found');
+      }
+      let newNode = new _Node(item, currentNode.next);
+      currentNode.next = newNode;
+    }
+  }
+
+  insertAt(item, index) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    } else {
+      let currentNode = this.head;
+      let previousNode = this.head;
+      for (let i = 0; i < index; i++) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+        if (currentNode === null) {
+          console.log('Index out of range');
+        }
+      }
+      let newNode = new _Node(item, currentNode);
+      previousNode.next = newNode;
+    }
+  }
+
   find(item) {
     if (this.head === null) {
       return null;
@@ -37,8 +91,8 @@ class LinkedList {
         }
         currentNode = currentNode.next;
       }
+      return currentNode;
     }
-    return currentNode;
   }
 
   remove(item) {
@@ -57,7 +111,34 @@ class LinkedList {
       if (currentNode === null) {
         throw new Error("Item not found");
       }
+      previousNode.next = currentNode.next;
     }
-    previousNode.next = currentNode.next;
+  }
+
+  toString() {
+    if (this.head === null) {
+      return 'List empty';
+    }
+    let fullList = '';
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      fullList += `${currentNode.value}, `;
+      currentNode = currentNode.next;
+    }
+    return fullList;
   }
 }
+
+const main = function () {
+  const SLL = new LinkedList();
+  SLL.insertFirst('Apollo');
+  SLL.insertLast('Helo');
+  SLL.insertLast('Starbuck');
+  SLL.insertLast('Husker');
+  SLL.insertLast('Boomer');
+  SLL.insertAt('Kat', 2);
+  SLL.remove('Boomer');
+  console.log(SLL.toString());
+};
+
+main();
