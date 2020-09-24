@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class _Node {
   constructor(value, next) {
@@ -39,7 +39,7 @@ class LinkedList {
         currentNode = currentNode.next;
       }
       if (currentNode === null) {
-        console.log('Key not found');
+        console.log("Key not found");
       }
       let newNode = new _Node(item, currentNode);
       previousNode.next = newNode;
@@ -55,7 +55,7 @@ class LinkedList {
         currentNode = currentNode.next;
       }
       if (currentNode === null) {
-        console.log('Key not found');
+        console.log("Key not found");
       }
       let newNode = new _Node(item, currentNode.next);
       currentNode.next = newNode;
@@ -72,7 +72,7 @@ class LinkedList {
         previousNode = currentNode;
         currentNode = currentNode.next;
         if (currentNode === null) {
-          console.log('Index out of range');
+          console.log("Index out of range");
         }
       }
       let newNode = new _Node(item, currentNode);
@@ -117,9 +117,9 @@ class LinkedList {
 
   toString() {
     if (this.head === null) {
-      return 'List empty';
+      return "List empty";
     }
-    let fullList = '';
+    let fullList = "";
     let currentNode = this.head;
     while (currentNode !== null) {
       fullList += `${currentNode.value}, `;
@@ -131,14 +131,84 @@ class LinkedList {
 
 const main = function () {
   const SLL = new LinkedList();
-  SLL.insertFirst('Apollo');
-  SLL.insertLast('Helo');
-  SLL.insertLast('Starbuck');
-  SLL.insertLast('Husker');
-  SLL.insertLast('Boomer');
-  SLL.insertAt('Kat', 2);
-  SLL.remove('Boomer');
-  console.log(SLL.toString());
+  SLL.insertFirst("Apollo");
+  SLL.insertLast("Helo");
+  SLL.insertLast("Starbuck");
+  SLL.insertLast("Husker");
+  SLL.insertLast("Boomer");
+  SLL.insertAt("Kat", 2);
+  SLL.remove("Boomer");
+  //console.log(SLL.toString());
+  return SLL;
 };
 
-main();
+const names = main();
+
+const emptyList = new LinkedList();
+
+const display = function (linkedList) {
+  let displayList = "";
+  let currentNode = linkedList.head;
+  while (currentNode !== null) {
+    displayList += `${currentNode.value}, `;
+    currentNode = currentNode.next;
+  }
+  return displayList;
+};
+
+console.log(display(names));
+
+const size = function (linkedList) {
+  let ticker = 0;
+  let currentNode = linkedList.head;
+  while (currentNode !== null) {
+    ticker++;
+    currentNode = currentNode.next;
+  }
+  return ticker;
+};
+
+//console.log(size(names));
+//console.log(size(emptyList));
+
+const isEmpty = function (linkedList) {
+  return linkedList.head === null;
+};
+
+//console.log(isEmpty(names));
+//console.log(isEmpty(emptyList));
+
+const findPrevious = function (linkedList, item) {
+  if (!linkedList.head) {
+    console.log("List is empty");
+    return;
+  }
+  if (linkedList.head.value === item) {
+    console.log("Item is first, so no previous item");
+    return;
+  }
+  let currentNode = linkedList.head;
+  while (currentNode.next.value !== item) {
+    currentNode = currentNode.next;
+  }
+  return currentNode;
+};
+
+// console.log(findPrevious(names, "Helo"));
+// console.log(findPrevious(names, "Apollo"));
+// console.log(findPrevious(emptyList, "Helo"));
+
+const findLast = function (linkedList) {
+  if (!linkedList.head) {
+    console.log("List is empty");
+    return;
+  }
+  let node = linkedList.head;
+  while (node.next) {
+    node = node.next;
+  }
+  return node;
+};
+
+console.log(findLast(emptyList));
+console.log(findLast(names));
