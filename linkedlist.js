@@ -134,10 +134,10 @@ const main = function () {
   SLL.insertFirst("Apollo");
   SLL.insertLast("Helo");
   SLL.insertLast("Starbuck");
-  SLL.insertLast("Husker");
-  SLL.insertLast("Boomer");
-  SLL.insertAt("Kat", 2);
-  SLL.remove("Boomer");
+  // SLL.insertLast("Husker");
+  // SLL.insertLast("Boomer");
+  // SLL.insertAt("Kat", 2);
+  // SLL.remove("Boomer");
   //console.log(SLL.toString());
   return SLL;
 };
@@ -168,7 +168,7 @@ const size = function (linkedList) {
   return ticker;
 };
 
-//console.log(size(names));
+console.log(size(names));
 //console.log(size(emptyList));
 
 const isEmpty = function (linkedList) {
@@ -210,8 +210,8 @@ const findLast = function (linkedList) {
   return node;
 };
 
-console.log(findLast(emptyList));
-console.log(findLast(names));
+//console.log(findLast(emptyList));
+//console.log(findLast(names));
 
 // iteratation????
 const reverseList = function (linkedList) {
@@ -247,4 +247,19 @@ const reverseListR = function (linkedList) {
   return newLinkedList;
 };
 
-console.log(display(reverseListR(names)));
+//console.log(display(reverseListR(names)));
+
+const findThirdFromEnd = function (lst) {
+  if (size(lst) < 3) {
+    console.log("List is shorter than three items");
+    return;
+  }
+  let currentNode = lst.head;
+  while (currentNode.next.next.next) {
+    currentNode = currentNode.next;
+  }
+  return currentNode.value;
+};
+
+console.log(findThirdFromEnd(names));
+console.log(findThirdFromEnd(emptyList));
