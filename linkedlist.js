@@ -261,6 +261,18 @@ const reverseListR = function (linkedList) {
   return newLinkedList;
 };
 
+const findMiddle = function (lst) {
+  if (lst.head === null || lst.head.next === null) {
+    return lst.head;
+  }
+  let lstSize = size(lst);
+  let currentNode = lst.head;
+  for (let i = 0; i < Math.ceil(lstSize / 2) - 1; i++) {
+    currentNode = currentNode.next;
+  }
+  return currentNode.value;
+};
+
 //console.log(display(reverseListR(names)));
 
 const findThirdFromEnd = function (lst) {
