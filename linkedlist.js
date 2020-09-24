@@ -212,3 +212,39 @@ const findLast = function (linkedList) {
 
 console.log(findLast(emptyList));
 console.log(findLast(names));
+
+// iteratation????
+const reverseList = function (linkedList) {
+  const listSize = size(linkedList);
+  if (listSize === 0 || listSize === 1) {
+    return linkedList;
+  }
+  let headNode = linkedList.head;
+  while (headNode.next) {
+    let tempNode = headNode.next;
+    headNode.next === headNode.next.next;
+  }
+};
+
+// recursion
+const newLinkedList = new LinkedList();
+const reverseListR = function (linkedList) {
+  //base case
+  if (!linkedList.head) {
+    return;
+  }
+
+  //general case
+  let currentNode = linkedList.head;
+  let value = currentNode.value;
+  while (currentNode.next !== null) {
+    value = currentNode.next.value;
+    currentNode = currentNode.next;
+  }
+  newLinkedList.insertLast(value);
+  linkedList.remove(currentNode.value);
+  reverseListR(linkedList);
+  return newLinkedList;
+};
+
+console.log(display(reverseListR(names)));
