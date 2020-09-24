@@ -300,6 +300,23 @@ const generateCycleList = function () {
   return CycleList;
 };
 
-console.log(generateCycleList());
+const cycleList = generateCycleList();
 
-const isCycleList = function (list) {};
+const isCycleList = function (list) {
+  let slowNode = list.head;
+  let fastNode = list.head;
+  let isLoop = false;
+
+  while (slowNode !== null && fastNode !== null && fastNode.next !== null) {
+    slowNode = slowNode.next;
+    fastNode = fastNode.next.next;
+    if (slowNode == fastNode) {
+      isLoop = true;
+      return isLoop;
+    }
+  }
+  return isLoop;
+};
+
+console.log("is cycle: ", isCycleList(cycleList));
+console.log("is cycle: ", isCycleList(names));
